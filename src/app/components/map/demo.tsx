@@ -1,8 +1,12 @@
 "use client";
 import { Button, Form } from "antd";
-import MapPerimeter from "@/components/MapPerimeter";
 import { useState } from "react";
 import { LatLng } from "@/components/MapPerimeter/type";
+import dynamic from "next/dynamic";
+
+const MapPerimeter = dynamic(() => import("@/components/MapPerimeter"), {
+  ssr: false,
+});
 
 export default function Demo() {
   const [form] = Form.useForm();

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+"use client"
 import React from "react";
 import { MapContainer, TileLayer, Polygon, useMapEvents } from "react-leaflet";
-import { Button } from "antd";
 import "leaflet/dist/leaflet.css"; 
 import { LatLng, MapPerimeterProps } from "./type";
 
@@ -30,6 +29,7 @@ const MapPerimeter: React.FC<MapPerimeterProps> = ({
     }
   };
 
+  
   return (
     <>
       <MapContainer
