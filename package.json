@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
+    "@testing-library/react": "^16.3.0",
     "antd": "^5.27.4",
     "leaflet": "1.9.4",
     "lucide-react": "^0.542.0",
@@ -21,7 +22,9 @@
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
     "react-live": "^4.1.8",
-    "react-syntax-highlighter": "^15.6.6"
+    "react-syntax-highlighter": "^15.6.6",
+    "testing-library": "^0.0.2",
+    "vitest": "^3.2.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
