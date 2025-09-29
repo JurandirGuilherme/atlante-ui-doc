@@ -1,3 +1,68 @@
 ---
 title: "Button"
 ---
+
+import CardComponents from "@/components/CardComponents";
+import { Button } from "@/components/Button";
+
+# Button
+
+O componente `Button` é um wrapper estilizado do `Button` do Ant Design, que adiciona suporte a variantes (`primary`, `default`, `secondary`) mantendo a API base do AntD.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Botão primário"
+  code={`<Button variant="primary">Salvar</Button>`}
+/>
+
+---
+
+## Variantes
+
+Você pode usar o prop `variant` para alterar o estilo do botão.
+
+<CardComponents
+  title="Variantes do Button"
+  code={`<div style={{ display: "flex", gap: "8px" }}>
+    <Button variant="primary">Primário</Button>
+    <Button variant="default">Default</Button>
+    <Button variant="secondary">Secundário</Button>
+  </div>
+`}
+/>
+
+---
+
+## Com ícone
+
+Você pode passar o prop `icon` para renderizar ícones ao lado do texto.
+
+<CardComponents
+  title="Botão com ícone"
+  code={`
+<Button variant="primary" icon={<SnippetsOutlined />}/>
+`}
+/>
+
+---
+
+## API
+
+| Propriedade  | Tipo                                        | Default     | Descrição                                                          |
+| ------------ | ------------------------------------------- | ----------- | ------------------------------------------------------------------ |
+| `variant`    | `"primary" \| "default" \| "secondary"`     | `"primary"` | Define a aparência do botão.                                       |
+| `children`   | `React.ReactNode`                           | `-`         | Conteúdo interno do botão.                                         |
+| `dataTestId` | `string`                                    | `-`         | Identificador de teste (usado em testes automatizados).            |
+| `style`      | `React.CSSProperties`                       | `-`         | Estilos adicionais que sobrescrevem o estilo padrão.               |
+| ...rest      | Herda todas as props do Ant Design `Button` | `-`         | Permite utilizar qualquer propriedade suportada pelo `AntdButton`. |
+
+---
+
+## Notas
+
+- O estilo é aplicado inline via `getButtonStyle`.
+- `variant="primary"` é o padrão, com fundo azul-escuro e texto branco.
+- Esse componente é compatível com todas as props originais do Ant Design `Button`.
