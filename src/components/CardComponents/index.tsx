@@ -14,8 +14,9 @@ export default function CardComponents({
 }: CardComponentsProps) {
   const [showCode, setShowCode] = useState(false);
 
+  // if (!window) return <></>
   return (
-    <LiveProvider code={code.trim()} scope={scope} theme={undefined}>
+    <LiveProvider code={code.trim()} scope={scope}>
       <Card
         title={title}
         style={{ marginBottom: 24, marginTop: 20 }}

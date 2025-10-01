@@ -1,0 +1,152 @@
+---
+title: "Table"
+---
+
+import CardComponents from "@/components/CardComponents";
+import { Table } from "@/components/Table";
+
+# Table
+
+O componente `Table` é um wrapper estilizado do `AntdTable`, com suporte a **seleção de linhas**, **ordenação** e **paginação customizada**.
+
+---
+
+## Quando usar
+
+- Para exibir listas tabulares de dados com ordenação.  
+- Quando precisa de **seleção de linhas** com checkbox.  
+- Para integrar paginação customizada no padrão visual da biblioteca.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Tabela simples"
+  code={`() => {
+  const data = [
+    { id: 1, name: "Thiago", age: 24 },
+    { id: 2, name: "Guilherme", age: 21 },
+    { id: 3, name: "Logan", age: 22 },
+    { id: 4, name: "Darlan", age: 31 },
+    { id: 5, name: "Elisa", age: 29 },
+  ];
+
+  const columns = [
+    { key: "name", title: "Nome", dataIndex: "name", sortable: true },
+    { key: "age", title: "Idade", dataIndex: "age", sortable: true },
+  ];
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      rowKey="id"
+      pagination={false}
+      style={{ width: "100%" }}
+    />
+  );
+}`}
+/>
+
+---
+
+## Com seleção de linhas
+
+<CardComponents
+  title="Tabela com seleção"
+  code={`() => {
+  const [selected, setSelected] = React.useState([]);
+  const data = [
+    { id: 1, name: "Thiago", age: 24 },
+    { id: 2, name: "Guilherme", age: 21 },
+    { id: 3, name: "Logan", age: 22 },
+    { id: 4, name: "Darlan", age: 31 },
+    { id: 5, name: "Elisa", age: 29 },
+  ];
+
+  const columns = [
+    { key: "name", title: "Nome", dataIndex: "name" },
+    { key: "age", title: "Idade", dataIndex: "age" },
+  ];
+
+  return (
+    <div>
+      <Table
+        data={data}
+        columns={columns}
+        rowKey="id"
+        selectable
+        onSelectionChange={(keys, rows) => setSelected(rows)}
+        pagination={false}
+      />
+      <p style={{ marginTop: 8 }}>
+        Selecionados: {selected.map((r) => r.name).join(", ") || "nenhum"}
+      </p>
+    </div>
+  );
+}`}
+/>
+
+---
+
+## Com paginação
+
+<CardComponents
+  title="Tabela com paginação"
+  code={`() => {
+  const data = Array.from({ length: 35 }, (_, i) => ({
+    id: i + 1,
+    name: "User " + (i + 1),
+    age: 20 + (i % 10),
+  }));
+
+  const columns = [
+    { key: "name", title: "Nome", dataIndex: "name", sortable: true },
+    { key: "age", title: "Idade", dataIndex: "age", sortable: true },
+  ];
+
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      rowKey="id"
+      pagination={{ pageSize: 5 }}
+      style={{ width: "100%" }}
+    />
+  );
+}`}
+/>
+
+---
+
+## API
+
+### TableProps
+
+| Propriedade         | Tipo                                                        | Padrão        | Descrição |
+|---------------------|-------------------------------------------------------------|---------------|------------|
+| `columns`           | `TableColumn<T>[]`                                         | obrigatório   | Definição das colunas da tabela. |
+| `data`              | `T[]`                                                      | obrigatório   | Lista de registros exibidos. |
+| `selectable`        | `boolean`                                                  | `false`       | Habilita seleção de linhas com checkbox. |
+| `onSelectionChange` | `(keys: React.Key[], rows: T[]) => void`                   | `undefined`   | Callback ao selecionar linhas. |
+| `pagination`        | `false \| object`                                          | `default`     | Configuração da paginação (customizada). |
+| `rowKey`            | `keyof T \| (record: T) => React.Key`                      | `"id"`        | Identificador único da linha. |
+| `dataTestId`        | `string`                                                   | `undefined`   | Atributo para testes automatizados. |
+| `style`             | `React.CSSProperties`                                      | `undefined`   | Estilo inline adicional. |
+| `...rest`           | `AntdTableProps<T>`                                        | -             | Props adicionais do Ant Design Table. |
+
+---
+
+### TableColumn
+
+| Propriedade | Tipo                                                                 | Descrição |
+|-------------|----------------------------------------------------------------------|------------|
+| `key`       | `string`                                                             | Identificador único da coluna. |
+| `title`     | `string`                                                             | Texto exibido no cabeçalho. |
+| `dataIndex` | `string`                                                             | Campo da linha associado à coluna. |
+| `sortable`  | `boolean`                                                            | Habilita ordenação na coluna. |
+| `width`     | `number \| string`                                                   | Largura da coluna. |
+| `style`     | `React.CSSProperties`                                                | Estilo inline da célula. |
+| `render`    | `(value: any, record: T, index: number) => React.ReactNode`          | Renderização customizada da célula. |
+

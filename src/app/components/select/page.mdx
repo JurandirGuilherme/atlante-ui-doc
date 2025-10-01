@@ -1,0 +1,117 @@
+---
+title: "Select"
+---
+
+import CardComponents from "@/components/CardComponents";
+
+# Select
+
+O componente `Select` é um wrapper estilizado do `AntdSelect`, com suporte a estados de validação (`error`, `warning`, `success`) e integração simplificada com listas de opções.
+
+---
+
+## Quando usar
+
+- Para permitir a seleção de **um ou mais itens** em um dropdown.  
+- Quando precisa exibir mensagens visuais de status no input.  
+- Para manter consistência com os outros campos de formulário da biblioteca.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Select básico"
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return (
+    <Select
+      placeholder="Selecione uma opção"
+      value={value}
+      onChange={setValue}
+      options={[
+        { label: "Admin", value: "admin" },
+        { label: "Editor", value: "editor" },
+        { label: "Viewer", value: "viewer" },
+      ]}
+      style={{ width: 240 }}
+    />
+  );
+}`}
+/>
+
+---
+
+## Com status
+
+<CardComponents
+  title="Select com status"
+  code={`() => {
+  const [valueFirst, setValueFirst] = React.useState(null);
+  const [valueSecond, setValueSecond] = React.useState(null);
+  const [valueThird, setValueThird] = React.useState(null);
+
+  return (
+    <div style={{ display: "flex", gap: "16px" }}>
+      <Select
+        placeholder="Erro"
+        status="error"
+        value={valueFirst}
+        onChange={setValueFirst}
+        options={[
+          { label: "Opção 1", value: "1" },
+          { label: "Opção 2", value: "2" },
+        ]}
+        style={{ width: 160 }}
+      />
+      <Select
+        placeholder="Aviso"
+        status="warning"
+        value={valueSecond}
+        onChange={setValueSecond}
+        options={[
+          { label: "Opção 1", value: "1" },
+          { label: "Opção 2", value: "2" },
+        ]}
+        style={{ width: 160 }}
+      />
+      <Select
+        placeholder="Sucesso"
+        status="success"
+        value={valueThird}
+        onChange={setValueThird}
+        options={[
+          { label: "Opção 1", value: "1" },
+          { label: "Opção 2", value: "2" },
+        ]}
+        style={{ width: 160 }}
+      />
+    </div>
+  );
+}`}
+/>
+
+---
+
+## API
+
+### SelectProps
+
+| Propriedade   | Tipo                               | Padrão          | Descrição |
+|---------------|------------------------------------|-----------------|------------|
+| `options`     | `SelectOption[]`                   | `[]`            | Lista de opções disponíveis. |
+| `status`      | `"error" \| "warning" \| "success"`| `undefined`     | Define o estado visual do select. |
+| `dataTestId`  | `string`                           | `undefined`     | Atributo para testes automatizados. |
+| `style`       | `React.CSSProperties`              | `undefined`     | Estilos inline adicionais. |
+| `disabled`    | `boolean`                          | `false`         | Desabilita a interação. |
+| `...rest`     | `AntdSelectProps`                  | -               | Todas as demais props do `AntdSelect`. |
+
+---
+
+### SelectOption
+
+| Propriedade | Tipo                      | Descrição |
+|-------------|---------------------------|------------|
+| `label`     | `string`                  | Texto exibido. |
+| `value`     | `string \| number \| boolean` | Valor associado. |
+| `disabled`  | `boolean`                 | Se `true`, desabilita a opção. |

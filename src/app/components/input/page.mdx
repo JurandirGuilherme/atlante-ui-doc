@@ -1,0 +1,88 @@
+---
+title: "Input"
+---
+
+import CardComponents from "@/components/CardComponents";
+import { Input } from "@atlante-ti/atlante-ui";
+
+# Input
+
+O componente `Input` é um wrapper estilizado do `Input` do Ant Design.  
+Ele adiciona suporte a estados de validação (`error`, `warning`, `success`), mantém consistência visual com sua biblioteca e preserva a API original do AntD.
+
+---
+
+## Quando usar
+
+- Para entrada de texto em formulários.  
+- Quando precisar de campos com feedback visual de validação.  
+- Quando for necessário um campo de senha com visibilidade alternável.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Input básico"
+  code={`() => <Input placeholder="Digite seu nome" />`}
+/>
+
+---
+
+## Estados de validação
+
+Você pode usar a prop `status` para aplicar estilos visuais de **erro**, **aviso** ou **sucesso**.
+
+<CardComponents
+  title="Input com status"
+  code={`() => (
+  <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: 300 }}>
+    <Input status="error" placeholder="Erro" />
+    <Input status="warning" placeholder="Aviso" />
+    <Input status="success" placeholder="Sucesso" />
+  </div>
+)`}
+/>
+
+---
+
+## Campo de senha
+
+Quando `type="password"`, o componente usa `AntdInput.Password` e exibe o ícone de visibilidade automática.
+
+<CardComponents
+  title="Input de senha"
+  description="O campo de senha permite alternar a visibilidade."
+  code={`() => <Input type="password" placeholder="Digite sua senha" />`}
+/>
+
+---
+
+## Estado desabilitado
+
+<CardComponents
+  title="Input desabilitado"
+  code={`() => <Input disabled placeholder="Campo desabilitado" />`}
+/>
+
+---
+
+## API
+
+| Propriedade  | Tipo                                | Default | Descrição                                                                 |
+|--------------|-------------------------------------|---------|---------------------------------------------------------------------------|
+| `status`     | `"error" \| "warning" \| "success"` | `-`     | Define o estado visual do campo.                                          |
+| `dataTestId` | `string`                            | `-`     | Identificador para testes automatizados.                                  |
+| `style`      | `React.CSSProperties`               | `-`     | Estilos adicionais aplicados ao input.                                    |
+| `type`       | `string`                            | `text`  | Tipo de input (ex: `text`, `password`, `email`).                          |
+| ...rest      | Herda todas as props de `AntdInput` | `-`     | Permite usar todas as propriedades originais do componente do Ant Design. |
+
+---
+
+## Notas
+
+- O estilo visual é aplicado inline via `getInputStyle`.  
+- Quando em foco, o input recebe uma borda destacada.  
+- No caso de `type="password"`, a alternância de visibilidade usa os ícones `EyeOutlined` e `EyeInvisibleOutlined`.  
+- Compatível com todos os eventos originais (`onChange`, `onFocus`, `onBlur`, etc.).  
+

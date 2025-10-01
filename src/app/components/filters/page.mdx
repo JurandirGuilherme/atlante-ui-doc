@@ -1,0 +1,134 @@
+---
+title: "Filters"
+---
+
+import CardComponents from "@/components/CardComponents";
+
+
+# Filters
+
+O componente `Filters` fornece uma interface flexível para criar **filtros de pesquisa** com suporte a campos de busca, seleção múltipla, datas e intervalos de datas.  
+Ele pode ser exibido em um **card colapsável** ou fixo.
+
+---
+
+## Quando usar
+
+- Para oferecer filtros avançados em tabelas ou listas.
+- Quando precisa de consistência visual nos formulários de busca da aplicação.
+- Para permitir filtros colapsáveis com botão de limpar e buscar.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Filtros básicos"
+  code={`() => {
+  const [values, setValues] = React.useState({});
+  return (
+    <Filters
+      dataTestId="user-filters"
+      fields={[
+        { key: "name", type: "search", label: "Name" },
+        {
+          key: "roles",
+          type: "multiselect",
+          label: "Roles",
+          options: [
+            { label: "Admin", value: "admin" },
+            { label: "Editor", value: "editor" },
+            { label: "Viewer", value: "viewe    r" },
+          ],
+        },
+        { key: "createdAt", type: "date", label: "Created At" },
+      ]}
+      values={values}
+      onChange={setValues}
+      onClear={() => setValues({})}
+      showSearchButton
+      onSearch={() => console.log("Search triggered", values)}
+    />
+  );
+}`}
+/>
+
+---
+
+## Exemplo colapsável
+
+<CardComponents
+  title="Filtros colapsáveis"
+  code={`() => {
+    const [values, setValues] = React.useState({});
+    return (
+      <Filters
+        dataTestId="project-filters"
+        collapsible
+        defaultCollapsed
+        fields={[
+          { key: "title", type: "search", label: "Project Title" },
+          {
+            key: "status",
+            type: "multiselect",
+            label: "Status",
+            options: [
+              { label: "Active", value: "active" },
+              { label: "Completed", value: "completed" },
+            ],
+          },
+          { key: "deadline", type: "daterange", label: "Deadline" },
+        ]}
+        values={values}
+        onChange={setValues}
+        onClear={() => setValues({})}
+      />
+    );
+  }`}
+/>
+
+---
+
+## API
+
+### FiltersProps
+
+| Propriedade        | Tipo                                        | Padrão          | Descrição                                             |
+| ------------------ | ------------------------------------------- | --------------- | ----------------------------------------------------- |
+| `fields`           | `FilterField[]`                             | **obrigatório** | Lista de campos de filtro.                            |
+| `values`           | `Record<string, unknown>`                   | **obrigatório** | Objeto que armazena os valores atuais de cada filtro. |
+| `onChange`         | `(values: Record<string, unknown>) => void` | **obrigatório** | Callback disparado quando um campo muda de valor.     |
+| `onClear`          | `() => void`                                | **obrigatório** | Callback disparado ao clicar no botão de limpar.      |
+| `collapsible`      | `boolean`                                   | `true`          | Define se o card pode ser colapsado.                  |
+| `defaultCollapsed` | `boolean`                                   | `false`         | Define se inicia colapsado.                           |
+| `showClearButton`  | `boolean`                                   | `true`          | Exibe ou não o botão de limpar.                       |
+| `showSearchButton` | `boolean`                                   | `false`         | Exibe ou não o botão de buscar.                       |
+| `onSearch`         | `() => void`                                | `undefined`     | Callback disparado ao clicar no botão de buscar.      |
+| `dataTestId`       | `string`                                    | `undefined`     | Atributo para testes automatizados.                   |
+| `style`            | `React.CSSProperties`                       | `undefined`     | Estilos inline adicionais.                            |
+| `className`        | `string`                                    | `undefined`     | Classe CSS adicional.                                 |
+
+---
+
+### FilterField
+
+Cada item em `fields` segue a interface `FilterField`:
+
+| Propriedade    | Tipo                                                      | Descrição                                  |
+| -------------- | --------------------------------------------------------- | ------------------------------------------ |
+| `key`          | `string`                                                  | Identificador único do campo.              |
+| `type`         | `"search" \| "multiselect" \| "date" \| "daterange"`      | Tipo de filtro a ser renderizado.          |
+| `label`        | `string`                                                  | Rótulo exibido acima do campo.             |
+| `placeholder`  | `string`                                                  | Placeholder customizado.                   |
+| `options`      | `{ label: string; value: string \| number \| boolean }[]` | Usado no tipo `multiselect`.               |
+| `searchFields` | `string[]`                                                | Campos usados em busca (quando aplicável). |
+| `width`        | `number \| string`                                        | Largura do campo (px, %, etc.).            |
+| `colSpan`      | `number`                                                  | Colunas ocupadas no grid (default 6).      |
+
+---
+
+## Notas
+
+- O estilo é aplicado inline, respeitando o tema da biblioteca.
+- Suporta inputs, selects, date pickers e intervalos de datas.
+- Pode ser usado de forma **fixa** ou em **collapse** para ocupar menos espaço.

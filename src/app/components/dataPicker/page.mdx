@@ -1,0 +1,87 @@
+---
+title: "DatePicker"
+---
+
+import dayjs from "dayjs";
+import CardComponents from "@/components/CardComponents";
+
+# DatePicker
+
+O componente `DatePicker` fornece um **campo de data** único com estilos customizados e suporte a **status visual** (`error`, `warning`, `success`).  
+Pode ser usado em formulários de cadastro, filtros ou dashboards.
+
+---
+
+## Quando usar
+
+- Para selecionar uma única data.
+- Quando se deseja feedback visual através do `status`.
+- Para inputs controlados ou não controlados.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Data simples"
+  code={`() => {
+    const [date, setDate] = React.useState<dayjs.Dayjs | null>(null);
+
+    return (
+      <div style={{ width: 200 }}>
+        <DatePicker
+          value={date}
+          onChange={setDate}
+          placeholder="Selecione a data"
+          format={"DD/MM/YYYY"}
+        />
+        <div style={{ marginTop: 8 }}>
+          {date ? \`Selecionada: \${date.format("DD/MM/YYYY")}\` : "Nenhuma data selecionada"}
+        </div>
+      </div>
+    );
+  }`}
+/>
+
+---
+
+## Exemplo com estados
+
+<CardComponents
+  title="Status do campo"
+  code={`() => {
+  const format = "DD/MM/YYYY";
+  return (
+    <div style={{ display: "flex", gap: 16 }}>
+      <DatePicker status="error" format={format} placeholder="Erro" />
+      <DatePicker status="warning" format={format} placeholder="Aviso" />
+      <DatePicker status="success" format={format} placeholder="Sucesso" />
+      <DatePicker disabled format={format} placeholder="Desabilitado" />
+    </div>
+  )}`}
+/>
+
+---
+
+## API
+
+### DatePickerProps
+
+| Propriedade | Tipo | Padrão | Descrição |
+|-------------|------|--------|-----------|
+| `status` | `"error" \| "warning" \| "success"` | `undefined` | Define a cor da borda e sombra do campo |
+| `value` | `Dayjs \| null` | `undefined` | Valor controlado do campo |
+| `onChange` | `(date: Dayjs \| null) => void` | `undefined` | Callback disparado ao selecionar ou limpar a data |
+| `disabled` | `boolean` | `false` | Desabilita o campo |
+| `placeholder` | `string` | `undefined` | Placeholder do campo |
+| `style` | `React.CSSProperties` | `undefined` | Estilos inline adicionais |
+| `dataTestId` | `string` | `undefined` | Atributo para testes automatizados |
+
+---
+
+## Notas
+
+- Suporta datas nulas.
+- Aplica estilos de foco e cores de status.
+- Integrável com `antd` e `dayjs`.
+- Pode ser usado de forma controlada ou não controlada.

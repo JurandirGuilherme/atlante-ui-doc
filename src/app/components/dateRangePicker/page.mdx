@@ -1,0 +1,87 @@
+---
+title: "DateRangePicker"
+---
+
+import dayjs from "dayjs";
+import CardComponents from "@/components/CardComponents";
+
+# DateRangePicker
+
+O componente `DateRangePicker` permite selecionar **intervalos de datas** com estilos customizados e suporte a **status visual** (`error`, `warning`, `success`).  
+Pode ser usado em formulários de busca ou filtros em dashboards.
+
+---
+
+## Quando usar
+
+- Para filtrar dados por períodos.
+- Para inputs de datas com intervalos em relatórios e tabelas.
+- Quando se deseja feedback visual através de `status`.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Intervalo de datas básico"
+  code={`() => {
+    const [range, setRange] = React.useState<[dayjs.Dayjs | null, dayjs.Dayjs | null] | null>(null);
+
+    return (
+      <div style={{ width: 300 }}>
+        <DateRangePicker
+          value={range}
+          onChange={setRange}
+          format={"DD/MM/YYYY"}
+          placeholder={["Data inicial", "Data final"]}
+        />
+        <div style={{ marginTop: 8 }}>
+          {range ? \`Selecionado: \${range[0]?.format("DD/MM/YYYY")} - \${range[1]?.format("DD/MM/YYYY")}\` : "Nenhuma data selecionada"}
+        </div>
+      </div>
+    );
+  }`}
+/>
+
+---
+
+## Exemplo com estados
+
+<CardComponents
+  title="Status do campo"
+  code={`() => {
+  const format = "DD/MM/YYYY";
+  return (
+    <div style={{ display: "flex", gap: 16 }}>
+      <DateRangePicker status="error" format={format} placeholder={["Início", "Fim"]} />
+      <DateRangePicker status="warning" format={format} placeholder={["Início", "Fim"]} />
+      <DateRangePicker status="success" format={format} placeholder={["Início", "Fim"]} />
+      <DateRangePicker disabled format={format} placeholder={["Início", "Fim"]} />
+    </div>
+  )}`}
+/>
+
+---
+
+## API
+
+### DateRangePickerProps
+
+| Propriedade | Tipo | Padrão | Descrição |
+|-------------|------|--------|-----------|
+| `status` | `"error" \| "warning" \| "success"` | `undefined` | Define a cor da borda e sombra do campo para indicar estado visual |
+| `onChange` | `(dates: [Dayjs \| null, Dayjs \| null] \| null) => void` | `undefined` | Callback disparado ao selecionar ou limpar o intervalo |
+| `value` | `[Dayjs \| null, Dayjs \| null] \| null` | `undefined` | Valor controlado do intervalo de datas |
+| `disabled` | `boolean` | `false` | Desabilita o campo |
+| `placeholder` | `[string, string]` | `["Start", "End"]` | Placeholders para os campos de início e fim |
+| `style` | `React.CSSProperties` | `undefined` | Estilos inline adicionais |
+| `dataTestId` | `string` | `undefined` | Atributo para testes automatizados |
+
+---
+
+## Notas
+
+- Suporta intervalos de datas nulos.
+- Aplica estilos de foco e cores de status.
+- Integra facilmente com `antd` e `dayjs`.
+- Pode ser usado em formulários controlados ou não controlados.
