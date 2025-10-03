@@ -1,4 +1,4 @@
-import { TableColumn } from "./components/Table";
+import { TableColumn } from "@atlante-ti/atlante-ui";
 
 export const mockColumns: TableColumn[] = [
     { key: "name", title: "Name", dataIndex: "name" },
