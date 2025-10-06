@@ -32,6 +32,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Layout
+          // search
           navbar={<Navbar />}
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/Atlante-TI"
