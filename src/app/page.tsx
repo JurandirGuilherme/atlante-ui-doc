@@ -24,7 +24,7 @@ export default function Home() {
             Começar
           </Link>
           <Link
-            href="https://github.com/JurandirGuilherme/atlante-ui-doc"
+            href="https://github.com/Atlante-TI/atlante-ui"
             target="_blank"
             className={styles.secondaryButton}
           >
