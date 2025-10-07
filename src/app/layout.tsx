@@ -35,6 +35,8 @@ export default async function RootLayout({
           navbar={<Navbar />}
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/Atlante-TI"
+          editLink={null}
+          feedback={{ content: null }}
         >
           {children}
         </Layout>
