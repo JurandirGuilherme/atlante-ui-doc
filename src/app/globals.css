@@ -1,3 +1,8 @@
+.nextra-search input {
+  background-color: oklab(0 0 0 / 0.05);
+}
+
+
 /* @import "tailwindcss";
 
 :root {
