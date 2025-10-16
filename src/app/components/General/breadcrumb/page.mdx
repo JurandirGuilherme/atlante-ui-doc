@@ -1,0 +1,81 @@
+---
+title: "Breadcrumb"
+---
+
+import CardComponents from "@/components/CardComponents";
+import { Breadcrumb } from "@atlante-ti/atlante-ui";
+
+# Breadcrumb
+
+O componente `Breadcrumb` é um wrapper usado para exibir o caminho de navegação atual na aplicação.  
+Ele ajuda o usuário a entender onde está e navegar para seções anteriores de forma intuitiva.
+
+---
+
+## Exemplo básico
+
+<CardComponents
+  title="Breadcrumb padrão"
+  code={`<Breadcrumb
+  items={[
+    { title: "Home", href: "/" },
+    { title: "Usuários", href: "/usuarios" },
+    { title: "Detalhes" },
+  ]}
+/>`}
+/>
+
+---
+
+## Com separador personalizado
+
+Você pode alterar o separador padrão (`/`) usando a prop `separator`.
+
+<CardComponents
+  title="Separador personalizado"
+  code={`<Breadcrumb
+  separator=">"
+  items={[
+    { title: "Início", href: "/" },
+    { title: "Produtos", href: "/produtos" },
+    { title: "Detalhes" },
+  ]}
+/>`}
+/>
+
+---
+
+## Estilização personalizada
+
+A prop `style` permite sobrescrever o estilo padrão do componente.
+
+<CardComponents
+  title="Breadcrumb estilizado"
+  code={`<Breadcrumb
+  items={[
+    { title: "Dashboard", href: "/" },
+    { title: "Relatórios" },
+  ]}
+  style={{ color: "red", marginBottom: 30 }}
+/>`}
+/>
+
+---
+
+## API
+
+| Propriedade  | Tipo | Default | Descrição |
+|--------------|------|----------|------------|
+| `items` | `BreadcrumbItem[]` | **Obrigatório** | Lista de itens do breadcrumb, cada um com `title` e opcionalmente `href`. |
+| `separator` | `React.ReactNode` | `/` | Define o separador entre os itens. |
+| `dataTestId` | `string` | `-` | Identificador de teste (usado em testes automatizados). |
+| `style` | `React.CSSProperties` | `-` | Estilo inline aplicado ao componente principal. |
+| ...rest | `AntdBreadcrumbProps` | `-` | Herda todas as propriedades do `Ant Design Breadcrumb`. |
+
+---
+
+## Notas
+
+- Os links são renderizados com `<a>` e sem sublinhado.
+- O tamanho da fonte é `14px` e o espaçamento inferior é `16px` por padrão.
+- O componente mantém compatibilidade total com o `Breadcrumb` do Ant Design, apenas adicionando padronizações visuais.

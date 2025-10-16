@@ -1,5 +1,5 @@
 import { SnippetsOutlined } from "@ant-design/icons";
-import { Button, Input, Filters, Select, Table, DateRangePicker, DatePicker } from "@atlante-ti/atlante-ui";
+import { Button, Input, Filters, Select, Table, DateRangePicker, DatePicker, Breadcrumb } from "@atlante-ti/atlante-ui";
 
 export const scope: Record<string, unknown> = {
   Button,
@@ -9,5 +9,6 @@ export const scope: Record<string, unknown> = {
   Select,
   DateRangePicker,
   DatePicker,
+  Breadcrumb,
   Table
 };
